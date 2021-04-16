@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import { drawings } from "./drawings";
+import React, { useState } from "react";
+import Square from './Square';
+
+// an art
+// {
+//   image: link_to_image,
+//   dateAdded: self-explanatory,
+//   size: 1, 2, or 3,
+//   description: string
+// }
 
 function App() {
+  const [drawingArray, setDrawingArray] = useState(drawings);
+
+  const Grid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8vw, 1fr));
+    /* grid-auto-rows: 1fr; */
+    grid-auto-flow: dense;
+  `;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid>
+      {drawingArray.map((obj, i) => {
+        return <Square img={obj.img} alt={obj.title} guestArtist={obj.guestArtist} size={obj.size} key={i} gridSize={obj.size * 8} />;
+      })}
+    </Grid>
   );
 }
 
