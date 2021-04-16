@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 
-// an art
-// {
-//   image: link_to_image,
-//   dateAdded: self-explanatory,
-//   size: 1, 2, or 3,
-//   description: string
-// }
-
 function Square(props) {
 
   const SquareContainer = styled.div`
@@ -28,7 +20,7 @@ function Square(props) {
 
   return (
     <SquareContainer>
-      <Img src={props.img} />
+      <Img src={props.img} alt={props.alt}/>
     </SquareContainer>
   );
 }
