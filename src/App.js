@@ -3,17 +3,22 @@ import { drawings } from "./drawings";
 import React, { useState } from "react";
 import Square from './Square';
 
-// an art
-// {
-//   image: link_to_image,
-//   dateAdded: self-explanatory,
-//   size: 1, 2, or 3,
-//   description: string
-// }
-
 function App() {
-  const [drawingArray, setDrawingArray] = useState(drawings);
+  const [squareArray, setSquareArray] = useState(drawings);
   const sizeMultiplier = 7;
+
+  const shuffle = (anArray) => {
+    const array = JSON.parse(JSON.stringify(anArray));
+
+    for(let i = array.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * i)
+      const temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    }
+
+    return array;
+  }
 
   const Grid = styled.div`
     display: grid;
@@ -24,7 +29,7 @@ function App() {
 
   return (
     <Grid>
-      {drawingArray.map((obj, i) => {
+      {shuffle(squareArray).map((obj, i) => {
         return <Square img={obj.img} alt={obj.title} guestArtist={obj.guestArtist} size={obj.size} key={i} gridSize={obj.size * sizeMultiplier} />;
       })}
     </Grid>
