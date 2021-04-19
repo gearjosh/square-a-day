@@ -7,8 +7,8 @@ function App() {
   const [squareArray, setSquareArray] = useState(drawings);
   const sizeMultiplier = 7;
 
-  const shuffle = (anArray) => {
-    const array = JSON.parse(JSON.stringify(anArray));
+  const shuffle = (ogArray) => {
+    const array = JSON.parse(JSON.stringify(ogArray));
 
     for(let i = array.length - 1; i > 0; i--){
       const j = Math.floor(Math.random() * i)
